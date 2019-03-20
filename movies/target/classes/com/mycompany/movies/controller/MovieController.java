@@ -1,18 +1,22 @@
 package com.mycompany.movies.controller;
  
-import javax.servlet.HttpConstraintElement;.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.ModelMap;
+
 @Controller
 public class MovieController {
-	@Autowired
-	UserService userService;
-	@RequestMapping(value="/movie",method=RequestMethod.POST)
-	public ModelAndView showMovie(HttpServletRequest req,HttpServletResponse res) {
-	ModelAndView mav=new ModelAndView("movie");
-	mav.addObject("movie",new Movie());
-	return mav;
+	@RequestMapping(value="/movie",method=RequestMethod.GET)
+	public ModelAndView movie() {
+	return new ModelAndView("movie","command",new Movie());
 	}
+@RequestMapping(value="/addmovie",method=RequestMethod.POST)
+public String addmovie(@ModelAttribute("movieAdd")Movie movie,ModelMap model) {
+	model.addAtribute("mName",movie.getMovieName());
+	return "result";
+}
+
 }
