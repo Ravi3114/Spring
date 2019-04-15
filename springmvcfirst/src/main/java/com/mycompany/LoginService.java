@@ -1,4 +1,4 @@
-package webapp;
+package com.mycompany;
 
 public class LoginService {
 	public boolean validateUser(String user, String password) {
