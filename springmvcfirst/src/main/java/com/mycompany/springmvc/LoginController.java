@@ -17,13 +17,14 @@ public class LoginController {
 	}
 	@RequestMapping(value="",method=RequestMethod.POST)
 	public String handleLogin(@RequestParam String name,@RequestParam String password,ModelMap model) {
-		if(loginserv.validateUser(name, password)) {
+		if(!loginserv.validateUser(name, password)) {
+			model.put("errormessage", "InvalidCredentials");
+			return "Login";
+		}
 		model.put("name",name);
 		model.put("password",password);
 		return "welcome";
-		}else {
-			return "Login";
-		}
+		
 	}
 
 }
