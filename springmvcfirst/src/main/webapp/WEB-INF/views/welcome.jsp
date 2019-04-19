@@ -6,5 +6,8 @@
 <title>Yahoo!!</title>
 </head>
 <body>
+hello ${name} <br>
+<a href="/list-todos?name=${name}">manage your todos
+</a>
 </body>
 </html>

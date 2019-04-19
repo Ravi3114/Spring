@@ -12,11 +12,19 @@ public class TodoController {
 	
 	@Autowired
 	TodoService todoService;
+	private TodoService service;
 	
 	@RequestMapping(value="/list-todos",method=RequestMethod.GET)
 	public String showLogin(ModelMap model) {
 		model.addAttribute("todos",todoService.retrieveTodos("mycompany"));
 		return "list-todos";
+	}
+	public String handleLogin(@RequestParam String name,@RequestParam String password,ModelMap model) {
+		service = null;
+		model.addAttribute("name",name);
+		model.addAttribute("todos",service.retrieveTodos("mycompany"));
+		return "list-todos";
+		
 	}
 
 }
