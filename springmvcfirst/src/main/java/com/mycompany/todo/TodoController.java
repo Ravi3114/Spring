@@ -38,6 +38,10 @@ public class TodoController {
 		return "todo";
 	}
 	
+	private String retrieveLoggedinUserName() {
+		return "Ravi3114";
+	}
+	
 	@RequestMapping(value="/add-todos",method=RequestMethod.POST)
 	public String addTodo(ModelMap model,@RequestParam String desc) {
 		todoService.addTodo("mycompany", desc, new Date(), false);
